@@ -21,3 +21,13 @@ Phase Name              | Phase Dependencies
 `_phase:push_notes`     | self `_phase:build`, self `_phase:readme_updater`, upstream `_phase:readme_updater`
 
 ![Phase Dependencies](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/elliot-nelson/rush-phased-builds-example/main/phases.uml)
+
+## Test cases
+
+The project and phases above should cover the following test cases (expand as necessary).
+
+1. Basic "build->test" phases -- can downstream project build while upstream project tests?
+2. The (clunky) `readme_updater` phase doesn't depend on anything, does the scheduler handle that?
+3. The (clunky) `push_notes` phase depends on multiple tasks (both upstream and self), does the scheduler handle that?
+4. The `@acme/utils` project doesn't implement `push_notes` phase -- what's that look like?
+5. Projects like rigs often won't include any/all build phases -- do they mess up phased builds?
