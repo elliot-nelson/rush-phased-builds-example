@@ -1,0 +1,32 @@
+@startuml
+skinparam padding 5
+skinparam nodesep 10
+top to bottom direction
+
+title "Phase Dependencies"
+
+package "Upstream" {
+  left to right direction
+  hexagon "_phase:build" as upstreamphasebuild
+  hexagon "_phase:lint" as upstreamphaselint
+  hexagon "_phase:test" as upstreamphasetest
+  hexagon "_phase:readme_updater" as upstreamphasereadme
+  hexagon "_phase:push_notes" as upstreamphasepushnotes
+}
+
+package "Self" {
+  left to right direction
+  hexagon "_phase:build" as selfphasebuild
+  hexagon "_phase:lint" as selfphaselint
+  hexagon "_phase:test" as selfphasetest
+  hexagon "_phase:readme_updater" as selfphasereadme
+  hexagon "_phase:push_notes" as selfphasepushnotes
+}
+
+upstreamphasebuild --> selfphasebuild
+selfphasebuild --> selfphaselint
+selfphasebuild --> selfphasetest
+selfphasebuild --> selfphasepushnotes
+selfphasereadme --> selfphasepushnotes
+upstreamphasereadme --> selfphasepushnotes
+@enduml

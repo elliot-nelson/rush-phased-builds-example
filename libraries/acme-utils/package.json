@@ -10,7 +10,8 @@
     "_phase:build": "heft build --lite --clean",
     "_phase:lint": "eslint src",
     "_phase:test": "heft test --no-build",
-    "_phase:readme_updater": "node scripts/readme_updater.js"
+    "_phase:readme_updater": "node scripts/readme_updater.js",
+    "_phase:push_notes": ""
   },
   "license": "MIT",
   "devDependencies": {
