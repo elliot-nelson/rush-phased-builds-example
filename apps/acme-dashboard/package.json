@@ -4,8 +4,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "heft test --clean",
-    "start": "heft start"
+    "build": "heft test --clean && node scripts/readme_updater.js",
+    "start": "heft start",
+
+    "_phase:build": "heft build --lite --clean",
+    "_phase:lint": "eslint src",
+    "_phase:test": "heft test --no-build",
+    "_phase:readme_updater": "node scripts/readme_updater.js"
   },
   "devDependencies": {
     "@rushstack/eslint-config": "~2.4.1",
