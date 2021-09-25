@@ -392,15 +392,16 @@
     {
       "packageName": "@acme/utils",
       "projectFolder": "libraries/acme-utils"
-    }
+    },
     /*{
       "packageName": "@acme/db",
       "projectFolder": "libraries/acme-db"
     },
+    */
     {
       "packageName": "@acme/dashboard",
       "projectFolder": "apps/acme-dashboard"
-    }*/
+    }
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)

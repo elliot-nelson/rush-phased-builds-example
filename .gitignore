@@ -37,6 +37,7 @@ jspm_packages/
 # Outputs
 temp
 lib
+lib-commonjs
 dist
 
 # Optional npm cache directory
