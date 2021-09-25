@@ -24,7 +24,7 @@ Phase Name              | Phase Dependencies
 
 ## Test cases
 
-The project and phases above should cover the following test cases (expand as necessary).
+The projects and phases above should cover the following test cases (expand as necessary).
 
 1. Basic "build->test" phases -- can downstream project build while upstream project tests?
 2. The (clunky) `readme_updater` phase doesn't depend on anything, does the scheduler handle that?
