@@ -12,7 +12,7 @@ Project           | Description
 
 ## Phases
 
-Phase Name                Phase Dependencies
+Phase Name              | Phase Dependencies
 ----------------------- | ------------------
 `_phase:build`          | upstream `_phase:build`
 `_phase:lint`           | self `_phase:build`
@@ -20,4 +20,4 @@ Phase Name                Phase Dependencies
 `_phase:readme_updater` | n/a
 `_phase:push_notes`     | self `_phase:build`, self `_phase:readme_updater`, upstream `_phase:readme_updater`
 
-![Phase Dependencies](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jonashackt/plantuml-markdown/master/example-uml.iuml)
+![Phase Dependencies](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/elliot-nelson/rush-phased-builds-example/main/phases.uml)
