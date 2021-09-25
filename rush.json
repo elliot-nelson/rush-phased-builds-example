@@ -401,6 +401,10 @@
     {
       "packageName": "@acme/dashboard",
       "projectFolder": "apps/acme-dashboard"
+    },
+    {
+      "packageName": "@acme/classic-rig",
+      "projectFolder": "rigs/acme-classic-rig"
     }
     // {
     //   /**

@@ -1,0 +1,16 @@
+{
+  "name": "@acme/classic-rig",
+  "version": "0.0.0",
+  "private": true,
+  "description": "An example rig package",
+  "scripts": {
+    "build": "",
+    "test": ""
+  },
+  "peerDependencies": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
