@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ToggleSwitch, IToggleEventArgs } from './ToggleSwitch';
+import { Utils } from '@acme/utils';
 
 /**
  * This React component renders the application page.
@@ -17,7 +18,8 @@ export class ExampleApp extends React.Component {
       <div style={{ padding: '20px' }}>
         <div style={appStyle}>
           <h2>Acme Dashboard</h2>
-          Wow, our employees love our new at-a-glance dashboard!
+          <p>Wow, our employees love our new at-a-glance dashboard!</p>
+          <p>Today, our customers have purchased <b>{Utils.madeUpMethod2()}</b> widgets.</p>
           <ToggleSwitch leftColor={'#800000'} rightColor={'#008000'} onToggle={this._onToggle} />
         </div>
       </div>

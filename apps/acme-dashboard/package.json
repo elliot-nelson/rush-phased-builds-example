@@ -25,5 +25,8 @@
     "typescript": "~4.3.5",
     "webpack": "~4.44.2",
     "source-map-loader": "~1.1.2"
+  },
+  "dependencies": {
+    "@acme/utils": "workspace:*"
   }
 }
