@@ -168,6 +168,54 @@
     // }
   ],
 
+  /* PHASES */
+  "phases": [
+    {
+      "name": "_phase:compile",
+      "dependencies": {
+        "upstream": ["_phase:compile"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false,
+      "enableParallelism": true
+    },
+    {
+      "name": "_phase:lint",
+      "dependencies": {
+        "self": ["_phase:compile"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false,
+      "enableParallelism": true
+    },
+    {
+      "name": "_phase:test",
+      "dependencies": {
+        "self": ["_phase:compile"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false,
+      "enableParallelism": true
+    },
+    {
+      "name": "_phase:readme_updater",
+      "dependencies": {},
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false,
+      "enableParallelism": true
+    },
+    {
+      "name": "_phase:push_notes",
+      "dependencies": {
+        "upstream": ["_phase:readme_updater"],
+        "self": ["_phase:build", "_phase:readme_updater"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false,
+      "enableParallelism": true
+    }
+  ],
+
   /**
    * Custom "parameters" introduce new parameters for specified Rush command-line commands.
    * For example, you might define a "--production" parameter for the "rush build" command.
@@ -180,7 +228,15 @@
 
       // For non-phased commands, we will continue to use the "associatedCommands" setting to associate
       // parameters with them.  (Phased commands must NOT appear in this list.)
-      "associatedCommands": ["build"]
+      "associatedCommands": ["build"],
+
+      // Phased commands expose parameters that are associated with their underlying phases.
+      // For example, "rush build" will accept the union of all parameters associated with any of
+      // its individual phases.
+      //
+      // The "--production" flag will be appended to package.json scripts for these specific phases,
+      // which are expected to support it.  The flag will be omitted for other phases.
+      "associatedPhases": ["_phase:compile", "_phase:readme_updater"]
     }
     // {
     //   /**
