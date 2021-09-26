@@ -4,7 +4,7 @@ This repo is a minimal example of a rush monorepo, used as a test bed for phased
 
 The `main` branch is buildable with current rush (`rush install && rush build`).
 
-The `phased` branch (see #1) can be checked out to attempt building with a version of rushstack that implements the spec described in https://github.com/microsoft/rushstack/issues/2300.
+The `phased` branch (see [#1](https://github.com/elliot-nelson/rush-phased-builds-example/pull/1)) can be checked out to attempt building with a version of rushstack that implements the spec described in [rushstack#2300](https://github.com/microsoft/rushstack/issues/2300).
 
 ## Projects
 
