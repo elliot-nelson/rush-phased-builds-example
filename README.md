@@ -2,6 +2,10 @@
 
 This repo is a minimal example of a rush monorepo, used as a test bed for phased builds.
 
+The `main` branch is buildable with current rush (`rush install && rush build`).
+
+The `phased` branch (see #1) can be checked out to attempt building with a version of rushstack that implements the spec described in https://github.com/microsoft/rushstack/issues/2300.
+
 ## Projects
 
 Project           | Description
