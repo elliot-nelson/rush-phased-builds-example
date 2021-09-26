@@ -35,3 +35,6 @@ The projects and phases above should cover the following test cases (expand as n
 3. The (clunky) `push_notes` phase depends on multiple tasks (both upstream and self), does the scheduler handle that?
 4. The `@acme/utils` project doesn't implement `push_notes` phase -- what's that look like?
 5. Projects like rigs often won't include any/all build phases -- do they mess up phased builds?
+  a. More specifically -- if a project HAD a build script, but no phases at all, can the scheduler collapse all the phases back to build?
+  b. Maybe projects should _opt in_ to phases somehow, so that projects can be converted one at a time.
+  c. Or, alternately, projects can _opt out_ of phases, and that could be the first step in a large conversion.
