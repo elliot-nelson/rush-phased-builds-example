@@ -7,7 +7,7 @@ title "Phase Dependencies"
 
 package "Upstream" {
   left to right direction
-  hexagon "_phase:build" as upstreamphasebuild
+  hexagon "_phase:compile" as upstreamphasebuild
   hexagon "_phase:lint" as upstreamphaselint
   hexagon "_phase:test" as upstreamphasetest
   hexagon "_phase:readme_updater" as upstreamphasereadme
@@ -16,7 +16,7 @@ package "Upstream" {
 
 package "Self" {
   left to right direction
-  hexagon "_phase:build" as selfphasebuild
+  hexagon "_phase:compile" as selfphasebuild
   hexagon "_phase:lint" as selfphaselint
   hexagon "_phase:test" as selfphasetest
   hexagon "_phase:readme_updater" as selfphasereadme
