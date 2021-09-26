@@ -1,3 +1,14 @@
 {
-  "projectOutputFolderNames": ["lib", "lib-commonjs", "dist", "temp"]
+  "projectOutputFolderNames": {
+    "_phase:compile": ["lib", "lib-commonjs", "dist", "temp/compile"],
+    "_phase:lint": ["temp/lint"],
+    "_phase:test": ["temp/test"],
+    "_phase:readme_updater": ["temp/readme_updater"],
+    "_phase:push_notes": ["temp/push_notes"]
+
+    // From the breakout session, it sounds like we should encourage users to organize
+    // outputs like above. Even if the "push_notes" task doesn't create its output folder
+    // at all, assuming each phase will have a dedicated "temp" output gives a place to
+    // put log files, etc., that can be included in the build.
+  }
 }
