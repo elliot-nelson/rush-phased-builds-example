@@ -24,7 +24,7 @@ Phase Name              | Phase Dependencies
 `_phase:readme_updater` | n/a
 `_phase:push_notes`     | self `_phase:compile`, self `_phase:readme_updater`, upstream `_phase:readme_updater`
 
-![Phase Dependencies](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/elliot-nelson/rush-phased-builds-example/main/phases.uml&2)
+![Phase Dependencies](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/elliot-nelson/rush-phased-builds-example/main/phases.uml&cache=no)
 
 ## Test cases
 
