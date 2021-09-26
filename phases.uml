@@ -8,10 +8,10 @@ title "Phase Dependencies"
 package "Upstream" {
   left to right direction
   hexagon "_phase:compile" as upstreamphasebuild
-  hexagon "_phase:lint" as upstreamphaselint
-  hexagon "_phase:test" as upstreamphasetest
+  ' hexagon "_phase:lint" as upstreamphaselint
+  ' hexagon "_phase:test" as upstreamphasetest
   hexagon "_phase:readme_updater" as upstreamphasereadme
-  hexagon "_phase:push_notes" as upstreamphasepushnotes
+  ' hexagon "_phase:push_notes" as upstreamphasepushnotes
 }
 
 package "Self" {
