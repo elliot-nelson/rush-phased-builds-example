@@ -11,6 +11,17 @@
    * "rush my-global-command --help".
    */
   "commands": [
+    {
+      "commandKind": "bulk",
+      "name": "readme-updater",
+      "summary": "Update readmes for all projects",
+      "description": "Ditto",
+      "safeForSimultaneousRushProcesses": false,
+      "enableParallelism": true,
+      "ignoreDependencyOrder": true,
+      "ignoreMissingScript": true,
+      "incremental": true
+    }
     // {
     //   /**
     //    * (Required) Determines the type of custom command.
@@ -175,11 +186,16 @@
   "parameters": [
     {
       "parameterKind": "flag",
+      "longName": "--lite",
+      "description": "Build without lint and unit tests",
+
+      "associatedCommands": ["build", "rebuild"]
+    },
+    {
+      "parameterKind": "flag",
       "longName": "--production",
       "description": "A custom flag parameter that is passed to the scripts that are invoked when building projects",
 
-      // For non-phased commands, we will continue to use the "associatedCommands" setting to associate
-      // parameters with them.  (Phased commands must NOT appear in this list.)
       "associatedCommands": ["build"]
     }
     // {

@@ -7,4 +7,5 @@
 
 console.log(`
 Pushing latest build notes to the corporate version dashboard.
+Here's my arguments: ${process.argv.slice(2)}
 `);
