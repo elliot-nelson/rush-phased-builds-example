@@ -11,6 +11,45 @@
    * "rush my-global-command --help".
    */
   "commands": [
+    {
+      "commandKind": "phased",
+      "name": "build",
+      "summary": "Phased build",
+      "description": "Ditto",
+      "safeForSimultaneousRushProcesses": false,
+      "enableParallelism": true,
+      "ignoreDependencyOrder": false,
+      "ignoreMissingScript": false,
+      "incremental": true,
+
+      "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:readme_updater", "_phase:push_notes"]
+    },
+    {
+      "commandKind": "phased",
+      "name": "rebuild",
+      "summary": "Phased rebuild",
+      "description": "Ditto",
+      "safeForSimultaneousRushProcesses": false,
+      "enableParallelism": true,
+      "ignoreDependencyOrder": false,
+      "ignoreMissingScript": false,
+      "incremental": false,
+
+      "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:readme_updater", "_phase:push_notes"]
+    },
+    {
+      "commandKind": "phased",
+      "name": "readme-updater",
+      "summary": "Update readmes for all projects",
+      "description": "Ditto",
+      "safeForSimultaneousRushProcesses": false,
+      "enableParallelism": true,
+      "ignoreDependencyOrder": true,
+      "ignoreMissingScript": true,
+      "incremental": true,
+
+      "phases": ["_phase:readme_updater"]
+    }
     // {
     //   /**
     //    * (Required) Determines the type of custom command.
@@ -223,19 +262,18 @@
   "parameters": [
     {
       "parameterKind": "flag",
+      "longName": "--lite",
+      "description": "Build without lint and unit tests",
+
+      "associatedCommands": ["build", "rebuild"]
+    },
+    {
+      "parameterKind": "flag",
       "longName": "--production",
       "description": "A custom flag parameter that is passed to the scripts that are invoked when building projects",
 
-      // For non-phased commands, we will continue to use the "associatedCommands" setting to associate
-      // parameters with them.  (Phased commands must NOT appear in this list.)
       "associatedCommands": ["build"],
 
-      // Phased commands expose parameters that are associated with their underlying phases.
-      // For example, "rush build" will accept the union of all parameters associated with any of
-      // its individual phases.
-      //
-      // The "--production" flag will be appended to package.json scripts for these specific phases,
-      // which are expected to support it.  The flag will be omitted for other phases.
       "associatedPhases": ["_phase:compile", "_phase:readme_updater"]
     }
     // {

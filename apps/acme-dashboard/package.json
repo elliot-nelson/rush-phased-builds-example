@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "heft test --clean && node scripts/readme_updater.js && node scripts/push_notes.js",
+    "build": "node scripts/build.js",
+    "readme-updater": "node scripts/readme_updater.js",
+
     "start": "heft start",
 
     "_phase:compile": "heft build --lite --clean",
