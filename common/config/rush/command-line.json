@@ -22,7 +22,7 @@
       "ignoreMissingScript": false,
       "incremental": true,
 
-      "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:readme_updater", "_phase:push_notes"]
+      "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:update-readme", "_phase:push-notes"]
     },
     {
       "commandKind": "phased",
@@ -35,7 +35,7 @@
       "ignoreMissingScript": false,
       "incremental": false,
 
-      "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:readme_updater", "_phase:push_notes"]
+      "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:update-readme", "_phase:push-notes"]
     },
     {
       "commandKind": "phased",
