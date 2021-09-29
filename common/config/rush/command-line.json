@@ -38,8 +38,14 @@
       "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:update-readme", "_phase:push-notes"]
     },
     {
+      // Interesting question here... for a command like "rush update-readme", which already did have
+      // a broken out option before, should we just call "rushx update-readme" (standard bulk), or
+      // should we call to an individual phase (_phase:update-readme) instead?
+      //
+      // Ultimately both would be allowed, so in this case I've shown what switching it to phased
+      // would look like.
       "commandKind": "phased",
-      "name": "readme-updater",
+      "name": "update-readme",
       "summary": "Update readmes for all projects",
       "description": "Ditto",
       "safeForSimultaneousRushProcesses": false,
@@ -48,7 +54,7 @@
       "ignoreMissingScript": true,
       "incremental": true,
 
-      "phases": ["_phase:readme_updater"]
+      "phases": ["_phase:update-readme"]
     }
     // {
     //   /**
@@ -237,17 +243,17 @@
       "enableParallelism": true
     },
     {
-      "name": "_phase:readme_updater",
+      "name": "_phase:update-readme",
       "dependencies": {},
       "ignoreMissingScript": true,
       "allowWarningsOnSuccess": false,
       "enableParallelism": true
     },
     {
-      "name": "_phase:push_notes",
+      "name": "_phase:push-notes",
       "dependencies": {
-        "upstream": ["_phase:readme_updater"],
-        "self": ["_phase:build", "_phase:readme_updater"]
+        "upstream": ["_phase:update-readme"],
+        "self": ["_phase:compile", "_phase:update-readme"]
       },
       "ignoreMissingScript": true,
       "allowWarningsOnSuccess": false,
@@ -265,7 +271,21 @@
       "longName": "--lite",
       "description": "Build without lint and unit tests",
 
-      "associatedCommands": ["build", "rebuild"]
+      "associatedCommands": ["build", "rebuild"],
+
+      // Note we don't pass --lite to any phases (including the :compile phase), because
+      // the compile phase has a baked in --lite argument already.
+      "associatedPhases": [],
+
+      // Here's a proposed, but optional, addition to parameter behavior: in addition to the
+      // "associatedPhases" property (which controls whether a parameter will be PASSED to
+      // a phase command), we could support "addPhasesToCommand" and "skipPhasesForCommand".
+      //
+      // The phase list for a phased command is already an unordered list, so adding and
+      // removing from that list is pretty trivial. This addition would allow us to retain
+      // the original meaning of "--lite" from the main branch.
+      "addPhasesToCommand": [],
+      "skipPhasesForCommand": ["_phase:lint", "_phase:test", "_phase:push-notes"]
     },
     {
       "parameterKind": "flag",
@@ -274,7 +294,7 @@
 
       "associatedCommands": ["build"],
 
-      "associatedPhases": ["_phase:compile", "_phase:readme_updater"]
+      "associatedPhases": ["_phase:compile", "_phase:push-notes"]
     }
     // {
     //   /**
