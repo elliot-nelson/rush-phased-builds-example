@@ -21,8 +21,8 @@ Phase Name              | Phase Dependencies
 `_phase:compile`        | upstream `_phase:compile`
 `_phase:lint`           | self `_phase:compile`
 `_phase:test`           | self `_phase:compile`
-`_phase:readme_updater` | n/a
-`_phase:push_notes`     | self `_phase:compile`, self `_phase:readme_updater`, upstream `_phase:readme_updater`
+`_phase:update-readme ` | n/a
+`_phase:push-notes`     | self `_phase:compile`, self `_phase:update-readme`, upstream `_phase:update-readme`
 
 ![Phase Dependencies](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/elliot-nelson/rush-phased-builds-example/main/phases.uml&cache=no)
 
@@ -31,8 +31,8 @@ Phase Name              | Phase Dependencies
 The projects and phases above should cover the following test cases (expand as necessary).
 
 1. Basic "build->test" phases -- can downstream project build while upstream project tests?
-2. The (clunky) `readme_updater` phase doesn't depend on anything, does the scheduler handle that?
-3. The (clunky) `push_notes` phase depends on multiple tasks (both upstream and self), does the scheduler handle that?
+2. The `update-readme` phase doesn't depend on anything, does the scheduler handle that?
+3. The `push-notes` phase depends on multiple tasks (both upstream and self), does the scheduler handle that?
 4. The `@acme/utils` project doesn't implement `push_notes` phase -- what's that look like?
 5. Projects like rigs often won't include any/all build phases -- do they mess up phased builds?
   a. More specifically -- if a project HAD a build script, but no phases at all, can the scheduler collapse all the phases back to build?
