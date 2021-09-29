@@ -10,8 +10,8 @@ package "Upstream" {
   hexagon "_phase:compile" as upstreamphasebuild
   ' hexagon "_phase:lint" as upstreamphaselint
   ' hexagon "_phase:test" as upstreamphasetest
-  hexagon "_phase:readme_updater" as upstreamphasereadme
-  ' hexagon "_phase:push_notes" as upstreamphasepushnotes
+  hexagon "_phase:update-readme" as upstreamphasereadme
+  ' hexagon "_phase:push-notes" as upstreamphasepushnotes
 }
 
 package "Self" {
@@ -19,8 +19,8 @@ package "Self" {
   hexagon "_phase:compile" as selfphasebuild
   hexagon "_phase:lint" as selfphaselint
   hexagon "_phase:test" as selfphasetest
-  hexagon "_phase:readme_updater" as selfphasereadme
-  hexagon "_phase:push_notes" as selfphasepushnotes
+  hexagon "_phase:update-readme" as selfphasereadme
+  hexagon "_phase:push-notes" as selfphasepushnotes
 }
 
 upstreamphasebuild --> selfphasebuild

@@ -6,12 +6,12 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "node scripts/build.js",
-    "readme-updater": "node scripts/readme_updater.js",
+    "update-readme": "node scripts/update-readme.js",
 
     "_phase:compile": "heft build --lite --clean",
     "_phase:lint": "eslint src",
     "_phase:test": "heft test --no-build",
-    "_phase:readme_updater": "node scripts/readme_updater.js"
+    "_phase:update-readme": "node scripts/update-readme.js"
   },
   "license": "MIT",
   "devDependencies": {
