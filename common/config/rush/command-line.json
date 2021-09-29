@@ -13,7 +13,7 @@
   "commands": [
     {
       "commandKind": "bulk",
-      "name": "readme-updater",
+      "name": "update-readme",
       "summary": "Update readmes for all projects",
       "description": "Ditto",
       "safeForSimultaneousRushProcesses": false,
