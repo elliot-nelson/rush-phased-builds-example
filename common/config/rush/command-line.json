@@ -17,12 +17,14 @@
       "summary": "Phased build",
       "description": "Ditto",
       "safeForSimultaneousRushProcesses": false,
-      "enableParallelism": true,
-      "ignoreDependencyOrder": false,
-      "ignoreMissingScript": false,
-      "incremental": true,
 
-      "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:update-readme", "_phase:push-notes"]
+      "phases": [
+        "_phase:compile",
+        "_phase:lint",
+        "_phase:test",
+        "_phase:update-readme",
+        "_phase:push-notes"
+      ]
     },
     {
       "commandKind": "phased",
@@ -30,12 +32,14 @@
       "summary": "Phased rebuild",
       "description": "Ditto",
       "safeForSimultaneousRushProcesses": false,
-      "enableParallelism": true,
-      "ignoreDependencyOrder": false,
-      "ignoreMissingScript": false,
-      "incremental": false,
 
-      "phases": ["_phase:compile", "_phase:lint", "_phase:test", "_phase:update-readme", "_phase:push-notes"]
+      "phases": [
+        "_phase:compile",
+        "_phase:lint",
+        "_phase:test",
+        "_phase:update-readme",
+        "_phase:push-notes"
+      ]
     },
     {
       // Interesting question here... for a command like "rush update-readme", which already did have
@@ -49,10 +53,6 @@
       "summary": "Update readmes for all projects",
       "description": "Ditto",
       "safeForSimultaneousRushProcesses": false,
-      "enableParallelism": true,
-      "ignoreDependencyOrder": true,
-      "ignoreMissingScript": true,
-      "incremental": true,
 
       "phases": ["_phase:update-readme"]
     }
@@ -285,7 +285,11 @@
       // removing from that list is pretty trivial. This addition would allow us to retain
       // the original meaning of "--lite" from the main branch.
       "addPhasesToCommand": [],
-      "skipPhasesForCommand": ["_phase:lint", "_phase:test", "_phase:push-notes"]
+      "skipPhasesForCommand": [
+        "_phase:lint",
+        "_phase:test",
+        "_phase:push-notes"
+      ]
     },
     {
       "parameterKind": "flag",
