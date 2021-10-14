@@ -19,6 +19,7 @@
       "safeForSimultaneousRushProcesses": false,
 
       "enableParallelism": true,
+      "incremental": true,
       "phases": [
         "_phase:compile",
         "_phase:lint",
@@ -35,6 +36,7 @@
       "safeForSimultaneousRushProcesses": false,
 
       "enableParallelism": true,
+      "incremental": false,
       "phases": [
         "_phase:compile",
         "_phase:lint",
@@ -57,6 +59,7 @@
       "safeForSimultaneousRushProcesses": false,
 
       "enableParallelism": true,
+      "incremental": true,
       "phases": ["_phase:update-readme"]
     }
     // {
@@ -224,7 +227,6 @@
         "upstream": ["_phase:compile"]
       },
       "ignoreMissingScript": true,
-      "incremental": true,
       "allowWarningsOnSuccess": false
     },
     {
@@ -233,7 +235,6 @@
         "self": ["_phase:compile"]
       },
       "ignoreMissingScript": true,
-      "incremental": true,
       "allowWarningsOnSuccess": false
     },
     {
@@ -242,14 +243,12 @@
         "self": ["_phase:compile"]
       },
       "ignoreMissingScript": true,
-      "incremental": true,
       "allowWarningsOnSuccess": false
     },
     {
       "name": "_phase:update-readme",
       "dependencies": {},
       "ignoreMissingScript": true,
-      "incremental": true,
       "allowWarningsOnSuccess": false
     },
     {
@@ -259,7 +258,6 @@
         "self": ["_phase:compile", "_phase:update-readme"]
       },
       "ignoreMissingScript": true,
-      "incremental": true,
       "allowWarningsOnSuccess": false
     }
   ],
