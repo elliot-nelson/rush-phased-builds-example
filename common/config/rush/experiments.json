@@ -36,5 +36,5 @@
    */
   // "buildCacheWithAllowWarningsInSuccessfulBuild": true
 
-  "multiPhaseCommands": true
+  "phasedCommands": true
 }
