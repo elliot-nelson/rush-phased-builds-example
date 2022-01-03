@@ -29,23 +29,6 @@
       ]
     },
     {
-      "commandKind": "phased",
-      "name": "rebuild",
-      "summary": "Phased rebuild",
-      "description": "Ditto",
-      "safeForSimultaneousRushProcesses": false,
-
-      "enableParallelism": true,
-      "incremental": false,
-      "phases": [
-        "_phase:compile",
-        "_phase:lint",
-        "_phase:test",
-        "_phase:update-readme",
-        "_phase:push-notes"
-      ]
-    },
-    {
       // Interesting question here... for a command like "rush update-readme", which already did have
       // a broken out option before, should we just call "rushx update-readme" (standard bulk), or
       // should we call to an individual phase (_phase:update-readme) instead?
