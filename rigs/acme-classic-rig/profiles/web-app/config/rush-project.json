@@ -1,38 +1,30 @@
 {
-  // This list still exists for non-phased bulk commands.
-  //
-  // Note that although in THIS case, this list is equal to or are parents
-  // of all the folders below in the phaseOptions list, but that's not required
-  // (this list is only used for non-phased build commands, and the below options
-  // are only used for phased build commands).
-  "projectOutputFolderNames": ["lib", "lib-commonjs", "dist", "temp"],
-
   // Structure proposed by @octogonz for phase options
   //
   // Folders like "temp/coverage" are (probably) already folders written to by
   // your unit tests, while folders like "temp/lint" are possible places we could
   // have phases write their log outputs to (since the phase is likely not to have
   // any other tangible output files to cache).
-  "phaseOptions": [
+  "operationSettings": [
     {
-      "phaseName": "_phase:compile",
-      "projectOutputFolderNames": ["lib", "lib-commonjs", "dist", "temp/compile"]
+      "operationName": "_phase:compile",
+      "outputFolderNames": ["lib", "lib-commonjs", "dist", "temp/compile"]
     },
     {
-      "phaseName": "_phase:lint",
-      "projectOutputFolderNames": ["temp/lint"]
+      "operationName": "_phase:lint",
+      "outputFolderNames": ["temp/lint"]
     },
     {
-      "phaseName": "_phase:test",
-      "projectOutputFolderNames": ["temp/test", "temp/jest-reports", "temp/coverage"]
+      "operationName": "_phase:test",
+      "outputFolderNames": ["temp/test", "temp/jest-reports", "temp/coverage"]
     },
     {
-      "phaseName": "_phase:update-readme",
-      "projectOutputFolderNames": ["temp/update-readme"]
+      "operationName": "_phase:update-readme",
+      "outputFolderNames": ["temp/update-readme"]
     },
     {
-      "phaseName": "_phase:push-notes",
-      "projectOutputFolderNames": ["temp/push-notes"]
+      "operationName": "_phase:push-notes",
+      "outputFolderNames": ["temp/push-notes"]
     }
   ]
 }
