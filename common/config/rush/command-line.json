@@ -250,31 +250,31 @@
    * For example, you might define a "--production" parameter for the "rush build" command.
    */
   "parameters": [
-    {
-      "parameterKind": "flag",
-      "longName": "--lite",
-      "description": "Build without lint and unit tests",
+    // {
+    //   "parameterKind": "flag",
+    //   "longName": "--lite",
+    //   "description": "Build without lint and unit tests",
 
-      "associatedCommands": ["build", "rebuild"],
+    //   "associatedCommands": ["build", "rebuild"],
 
-      // Note we don't pass --lite to any phases (including the :compile phase), because
-      // the compile phase has a baked in --lite argument already.
-      "associatedPhases": [],
+    //   // Note we don't pass --lite to any phases (including the :compile phase), because
+    //   // the compile phase has a baked in --lite argument already.
+    //   "associatedPhases": [],
 
-      // Here's a proposed, but optional, addition to parameter behavior: in addition to the
-      // "associatedPhases" property (which controls whether a parameter will be PASSED to
-      // a phase command), we could support "addPhasesToCommand" and "skipPhasesForCommand".
-      //
-      // The phase list for a phased command is already an unordered list, so adding and
-      // removing from that list is pretty trivial. This addition would allow us to retain
-      // the original meaning of "--lite" from the main branch.
-      "addPhasesToCommand": [],
-      "skipPhasesForCommand": [
-        "_phase:lint",
-        "_phase:test",
-        "_phase:push-notes"
-      ]
-    },
+    //   // // Here's a proposed, but optional, addition to parameter behavior: in addition to the
+    //   // // "associatedPhases" property (which controls whether a parameter will be PASSED to
+    //   // // a phase command), we could support "addPhasesToCommand" and "skipPhasesForCommand".
+    //   // //
+    //   // // The phase list for a phased command is already an unordered list, so adding and
+    //   // // removing from that list is pretty trivial. This addition would allow us to retain
+    //   // // the original meaning of "--lite" from the main branch.
+    //   // "addPhasesToCommand": [],
+    //   // "skipPhasesForCommand": [
+    //   //   "_phase:lint",
+    //   //   "_phase:test",
+    //   //   "_phase:push-notes"
+    //   // ]
+    // },
     {
       "parameterKind": "flag",
       "longName": "--production",
