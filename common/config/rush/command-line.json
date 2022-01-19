@@ -12,15 +12,38 @@
    */
   "commands": [
     {
-      "commandKind": "bulk",
+      "commandKind": "phased",
+      "name": "build",
+      "summary": "Phased build",
+      "description": "Ditto",
+      "safeForSimultaneousRushProcesses": false,
+
+      "enableParallelism": true,
+      "incremental": true,
+      "phases": [
+        "_phase:compile",
+        "_phase:lint",
+        "_phase:test",
+        "_phase:update-readme",
+        "_phase:push-notes"
+      ]
+    },
+    {
+      // Interesting question here... for a command like "rush update-readme", which already did have
+      // a broken out option before, should we just call "rushx update-readme" (standard bulk), or
+      // should we call to an individual phase (_phase:update-readme) instead?
+      //
+      // Ultimately both would be allowed, so in this case I've shown what switching it to phased
+      // would look like.
+      "commandKind": "phased",
       "name": "update-readme",
       "summary": "Update readmes for all projects",
       "description": "Ditto",
       "safeForSimultaneousRushProcesses": false,
+
       "enableParallelism": true,
-      "ignoreDependencyOrder": true,
-      "ignoreMissingScript": true,
-      "incremental": true
+      "incremental": true,
+      "phases": ["_phase:update-readme"]
     }
     // {
     //   /**
@@ -179,24 +202,87 @@
     // }
   ],
 
+  /* PHASES */
+  "phases": [
+    {
+      "name": "_phase:compile",
+      "dependencies": {
+        "upstream": ["_phase:compile"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false
+    },
+    {
+      "name": "_phase:lint",
+      "dependencies": {
+        "self": ["_phase:compile"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false
+    },
+    {
+      "name": "_phase:test",
+      "dependencies": {
+        "self": ["_phase:compile"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false
+    },
+    {
+      "name": "_phase:update-readme",
+      "dependencies": {},
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false
+    },
+    {
+      "name": "_phase:push-notes",
+      "dependencies": {
+        "upstream": ["_phase:update-readme"],
+        "self": ["_phase:compile", "_phase:update-readme"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false
+    }
+  ],
+
   /**
    * Custom "parameters" introduce new parameters for specified Rush command-line commands.
    * For example, you might define a "--production" parameter for the "rush build" command.
    */
   "parameters": [
-    {
-      "parameterKind": "flag",
-      "longName": "--lite",
-      "description": "Build without lint and unit tests",
+    // {
+    //   "parameterKind": "flag",
+    //   "longName": "--lite",
+    //   "description": "Build without lint and unit tests",
 
-      "associatedCommands": ["build", "rebuild"]
-    },
+    //   "associatedCommands": ["build", "rebuild"],
+
+    //   // Note we don't pass --lite to any phases (including the :compile phase), because
+    //   // the compile phase has a baked in --lite argument already.
+    //   "associatedPhases": [],
+
+    //   // // Here's a proposed, but optional, addition to parameter behavior: in addition to the
+    //   // // "associatedPhases" property (which controls whether a parameter will be PASSED to
+    //   // // a phase command), we could support "addPhasesToCommand" and "skipPhasesForCommand".
+    //   // //
+    //   // // The phase list for a phased command is already an unordered list, so adding and
+    //   // // removing from that list is pretty trivial. This addition would allow us to retain
+    //   // // the original meaning of "--lite" from the main branch.
+    //   // "addPhasesToCommand": [],
+    //   // "skipPhasesForCommand": [
+    //   //   "_phase:lint",
+    //   //   "_phase:test",
+    //   //   "_phase:push-notes"
+    //   // ]
+    // },
     {
       "parameterKind": "flag",
       "longName": "--production",
       "description": "A custom flag parameter that is passed to the scripts that are invoked when building projects",
 
-      "associatedCommands": ["build"]
+      "associatedCommands": ["build"],
+
+      "associatedPhases": ["_phase:compile", "_phase:push-notes"]
     }
     // {
     //   /**

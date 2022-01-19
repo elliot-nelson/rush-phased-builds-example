@@ -1,3 +1,30 @@
 {
-  "projectOutputFolderNames": ["lib", "lib-commonjs", "dist", "temp"]
+  // Structure proposed by @octogonz for phase options
+  //
+  // Folders like "temp/coverage" are (probably) already folders written to by
+  // your unit tests, while folders like "temp/lint" are possible places we could
+  // have phases write their log outputs to (since the phase is likely not to have
+  // any other tangible output files to cache).
+  "operationSettings": [
+    {
+      "operationName": "_phase:compile",
+      "outputFolderNames": ["lib", "lib-commonjs", "dist", "temp/compile"]
+    },
+    {
+      "operationName": "_phase:lint",
+      "outputFolderNames": ["temp/lint"]
+    },
+    {
+      "operationName": "_phase:test",
+      "outputFolderNames": ["temp/test", "temp/jest-reports", "temp/coverage"]
+    },
+    {
+      "operationName": "_phase:update-readme",
+      "outputFolderNames": ["temp/update-readme"]
+    },
+    {
+      "operationName": "_phase:push-notes",
+      "outputFolderNames": ["temp/push-notes"]
+    }
+  ]
 }
